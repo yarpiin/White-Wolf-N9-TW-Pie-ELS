@@ -5,6 +5,7 @@
 #include <linux/printk.h>
 #include <linux/rcupdate.h>
 #include <linux/slab.h>
+#include <linux/list.h>
 #include <linux/ehmp.h>
 
 #include <trace/events/sched.h>
@@ -1272,6 +1273,11 @@ schedtune_boostgroup_release(struct schedtune *st)
 #endif // CONFIG_DYNAMIC_STUNE_BOOST
 	/* Reset this boost group */
 	schedtune_boostgroup_update(st->idx, 0);
+
+#ifdef CONFIG_DYNAMIC_STUNE_BOOST
+	/* Free dynamic boost slots */
+	boost_slots_release(st);
+#endif // CONFIG_DYNAMIC_STUNE_BOOST
 
 	/* Keep track of allocated boost groups */
 	allocated_group[st->idx] = NULL;
