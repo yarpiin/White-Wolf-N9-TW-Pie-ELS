@@ -277,6 +277,10 @@ static __init int sel_netif_init(void)
 {
 	int i;
 
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	selinux_enabled = 1;
+#endif
+
 	if (!selinux_enabled)
 		return 0;
 
