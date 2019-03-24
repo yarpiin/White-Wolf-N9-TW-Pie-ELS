@@ -330,8 +330,8 @@
 				idle-state-name = "c2";
 				compatible = "exynos,idle-state";
 				arm,psci-suspend-param = <0x0010000>;
-				entry-latency-us = <210>;
-				exit-latency-us = <235>;
+				entry-latency-us = <235>;
+				exit-latency-us = <220>;
 				min-residency-us = <3500>;
 				status = "okay";
 			};
