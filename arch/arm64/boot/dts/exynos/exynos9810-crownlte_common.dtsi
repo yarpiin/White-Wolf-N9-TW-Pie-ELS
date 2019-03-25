@@ -559,8 +559,8 @@
 				};
 				buck2_reg: BUCK2 {
 					regulator-name = "vdd_cpucl1";
-					regulator-min-microvolt = <450000>;
-					regulator-max-microvolt = <1300000>;
+					regulator-min-microvolt = <400000>;
+					regulator-max-microvolt = <1250000>;
 					regulator-always-on;
 					regulator-ramp-delay = <6000>;
 					regulator-initial-mode = <1>;
@@ -568,8 +568,8 @@
 
 				buck3_reg: BUCK3 {
 					regulator-name = "vdd_cpucl0";
-					regulator-min-microvolt = <450000>;
-					regulator-max-microvolt = <1300000>;
+					regulator-min-microvolt = <400000>;
+					regulator-max-microvolt = <1250000>;
 					regulator-always-on;
 					regulator-ramp-delay = <6000>;
 					regulator-initial-mode = <1>;
