@@ -15,6 +15,7 @@
 #include <linux/interrupt.h>
 #include <linux/pm_runtime.h>
 #include <linux/clk.h>
+#include <linux/cpu_input_boost.h>
 #include <linux/io.h>
 #include <linux/fb.h>
 #include <linux/delay.h>
@@ -2732,6 +2733,7 @@ static int decon_ioctl(struct fb_info *info, unsigned int cmd,
 		break;
 
 	case S3CFB_WIN_CONFIG:
+		cpu_input_boost_kick();
 		argp = (struct decon_win_config_data __user *)arg;
 		DPU_EVENT_LOG(DPU_EVT_WIN_CONFIG, &decon->sd, ktime_set(0, 0));
 		decon_systrace(decon, 'C', "decon_win_config", 1);
