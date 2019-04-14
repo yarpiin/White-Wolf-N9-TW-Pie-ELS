@@ -784,7 +784,7 @@
 		interactive_info = <338000 94 0>;
 		gpu_dvfs_table_size = <7 7>; /*<row col>*/
 		gpu_dvfs_table = <  598000    78  100   5  1794000  1950000      0
-		                    572000    78   99   1  1794000  1950000      0
+		                    572000    78  100   5  1794000  1950000      0
 		                    546000    78   99   1  1794000  1950000      0
 		                    455000    78   85   1  1539000  1794000      0
 		                    338000    78   85   1  1352000  1248000      0
@@ -804,7 +804,7 @@
 		gpu_voltage_offset_margin = <37500>;
 		gpu_tmu_control = <1>;
 		gpu_temp_throttling_level_num = <6>;
-		gpu_temp_throttling = <598000 546000 455000 338000 260000 260000>;
+		gpu_temp_throttling = <572000 546000 455000 338000 260000 260000>;
 		gpu_power_coeff = <625>;
 		gpu_dvfs_time_interval = <5>; /*1 tick : 10ms*/
 		gpu_default_wakeup_lock = <1>;
@@ -5073,7 +5073,7 @@
 					dm-type = <DM_MIF>;
 						/*  cpu     mif  */
 					table = < 2002000  845000
-						  1898000  845000
+						  1950000  845000
 						  1794000  845000
 						  1690000  845000
 						  1456000  676000
