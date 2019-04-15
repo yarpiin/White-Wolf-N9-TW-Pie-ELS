@@ -214,6 +214,7 @@ source "drivers/fpga/Kconfig"
 
 source "drivers/tee/Kconfig"
 
+source "drivers/energy_model/Kconfig"
 
 source "drivers/trace/Kconfig"
 
