@@ -69,7 +69,6 @@ void __iomem *g3d1_outstanding_regs;
 
 /*  clk,vol,abb,min,max,down stay, pm_qos mem, pm_qos int, pm_qos cpu_kfc_min, pm_qos cpu_egl_max */
 static gpu_dvfs_info gpu_dvfs_table_default[] = {
-    {598, 800000, 0, 78, 100, 9, 0, 1794000, 400000, 1950000, CPU_MAX},
 	{572, 800000, 0, 78, 100, 9, 0, 1794000, 400000, 1950000, CPU_MAX},
 	{546, 800000, 0, 78,  99, 5, 0, 1794000, 400000, 1950000, CPU_MAX},
 	{455, 800000, 0, 78,  85, 1, 0, 1539000, 400000, 1794000, CPU_MAX},
@@ -87,8 +86,8 @@ static int mif_min_table[] = {
 };
 
 static gpu_attribute gpu_config_attributes[] = {
-	{GPU_MAX_CLOCK, 598},
-	{GPU_MAX_CLOCK_LIMIT, 598},
+	{GPU_MAX_CLOCK, 572},
+	{GPU_MAX_CLOCK_LIMIT, 572},
 	{GPU_MIN_CLOCK, 260},
 	{GPU_DVFS_START_CLOCK, 260},
 	{GPU_DVFS_BL_CONFIG_CLOCK, 260},
@@ -112,8 +111,8 @@ static gpu_attribute gpu_config_attributes[] = {
 	{GPU_COLD_MINIMUM_VOL, 0},
 	{GPU_VOLTAGE_OFFSET_MARGIN, 37500},
 	{GPU_TMU_CONTROL, 1},
-	{GPU_TEMP_THROTTLING1, 598},
-	{GPU_TEMP_THROTTLING2, 572},
+	{GPU_TEMP_THROTTLING1, 572},
+	{GPU_TEMP_THROTTLING2, 546},
 	{GPU_TEMP_THROTTLING3, 455},
 	{GPU_TEMP_THROTTLING4, 338},
 	{GPU_TEMP_THROTTLING5, 260},
@@ -131,7 +130,7 @@ static gpu_attribute gpu_config_attributes[] = {
 	{GPU_DVFS_POLLING_TIME, 30},
 	{GPU_PMQOS_INT_DISABLE, 1},
 	{GPU_PMQOS_MIF_MAX_CLOCK, 1794000},
-	{GPU_PMQOS_MIF_MAX_CLOCK_BASE, 598},
+	{GPU_PMQOS_MIF_MAX_CLOCK_BASE, 572},
 	{GPU_CL_DVFS_START_BASE, 455},
 	{GPU_DEBUG_LEVEL, DVFS_WARNING},
 	{GPU_TRACE_LEVEL, TRACE_ALL},
