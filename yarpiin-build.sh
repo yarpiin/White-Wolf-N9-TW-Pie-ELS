@@ -35,7 +35,8 @@ export KBUILD_BUILD_USER=yarpiin
 export KBUILD_BUILD_HOST=kernel
 
 # Paths
-CROWNIMG_DIR="/home/yarpiin/Android/Kernel/SGS9/KernelFlasher/boot/N960"
+CROWNREPACK_DIR="/home/yarpiin/Android/Kernel/SGS9/Repack/N960/split_img"
+CROWNIMG_DIR="/home/yarpiin/Android/Kernel/SGS9/Repack/N960"
 ZIP_MOVE="/home/yarpiin/Android/Kernel/SGS9/Zip"
 ZIMAGE_DIR="$KERNEL_DIR/arch/arm64/boot"
 
@@ -56,16 +57,23 @@ function make_crown_kernel {
 		echo
 		make $CROWNDEFCONFIG
 		make $THREAD
-		cp -vr $ZIMAGE_DIR/$KERNEL $CROWNIMG_DIR/zImage
-        cp -vr $ZIMAGE_DIR/$DTBIMAGE $CROWNIMG_DIR/img.dtb
+		cp -vr $ZIMAGE_DIR/$KERNEL $CROWNREPACK_DIR/N960.img-zImage
+        cp -vr $ZIMAGE_DIR/$DTBIMAGE $CROWNREPACK_DIR/N960.img-dtb
 }
 
 function make_crown_permissive_kernel {
 		echo
 		make $CROWNPERM_DEFCONFIG
 		make $THREAD
-		cp -vr $ZIMAGE_DIR/$KERNEL $CROWNIMG_DIR/zImage
-        cp -vr $ZIMAGE_DIR/$DTBIMAGE $CROWNIMG_DIR/img.dtb
+		cp -vr $ZIMAGE_DIR/$KERNEL $CROWNREPACK_DIR/N960.img-zImage
+        cp -vr $ZIMAGE_DIR/$DTBIMAGE $CROWNREPACK_DIR/N960.img-dtb
+}
+
+function repack_crown {
+		/bin/bash /home/yarpiin/Android/Kernel/SGS9/Repack/N960/repackimg.sh
+		cd $CROWNIMG_DIR
+		cp -vr image-new.img $KERNELFLASHER_DIR/N960.img
+		cd $KERNEL_DIR
 }
 
 function make_zip {
@@ -126,6 +134,7 @@ do
 case "$dchoice" in
 	y|Y)
 		make_crown_permissive_kernel
+        repack_crown
 		break
 		;;
 	n|N )
@@ -146,6 +155,7 @@ do
 case "$dchoice" in
 	y|Y)
 		make_crown_kernel
+        repack_crown
 		break
 		;;
 	n|N )
