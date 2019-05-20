@@ -13,7 +13,6 @@
 
 #include "f2fs.h"
 #include "node.h"
-#include <trace/events/android_fs.h>
 
 bool f2fs_may_inline_data(struct inode *inode)
 {
@@ -86,29 +85,14 @@ int f2fs_read_inline_data(struct inode *inode, struct page *page)
 {
 	struct page *ipage;
 
-	if (trace_android_fs_dataread_start_enabled()) {
-		char *path, pathbuf[MAX_TRACE_PATHBUF_LEN];
-
-		path = android_fstrace_get_pathname(pathbuf,
-						    MAX_TRACE_PATHBUF_LEN,
-						    inode);
-		trace_android_fs_dataread_start(inode, page_offset(page),
-						PAGE_SIZE, current->pid,
-						path, current->comm);
-	}
-
 	ipage = get_node_page(F2FS_I_SB(inode), inode->i_ino);
 	if (IS_ERR(ipage)) {
-		trace_android_fs_dataread_end(inode, page_offset(page),
-					      PAGE_SIZE);
 		unlock_page(page);
 		return PTR_ERR(ipage);
 	}
 
 	if (!f2fs_has_inline_data(inode)) {
 		f2fs_put_page(ipage, 1);
-		trace_android_fs_dataread_end(inode, page_offset(page),
-					      PAGE_SIZE);
 		return -EAGAIN;
 	}
 
@@ -120,8 +104,6 @@ int f2fs_read_inline_data(struct inode *inode, struct page *page)
 	if (!PageUptodate(page))
 		SetPageUptodate(page);
 	f2fs_put_page(ipage, 1);
-	trace_android_fs_dataread_end(inode, page_offset(page),
-				      PAGE_SIZE);
 	unlock_page(page);
 	return 0;
 }
@@ -146,16 +128,6 @@ int f2fs_convert_inline_page(struct dnode_of_data *dn, struct page *page)
 	err = f2fs_reserve_block(dn, 0);
 	if (err)
 		return err;
-
-	if (unlikely(dn->data_blkaddr != NEW_ADDR)) {
-		f2fs_put_dnode(dn);
-		set_sbi_flag(fio.sbi, SBI_NEED_FSCK);
-		f2fs_msg(fio.sbi->sb, KERN_WARNING,
-			"%s: corrupted inline inode ino=%lx, i_addr[0]:0x%x, "
-			"run fsck to fix.",
-			__func__, dn->inode->i_ino, dn->data_blkaddr);
-		return -EINVAL;
-	}
 
 	f2fs_bug_on(F2FS_P_SB(page), PageWriteback(page));
 
@@ -394,17 +366,6 @@ static int f2fs_move_inline_dirents(struct inode *dir, struct page *ipage,
 	err = f2fs_reserve_block(&dn, 0);
 	if (err)
 		goto out;
-
-	if (unlikely(dn.data_blkaddr != NEW_ADDR)) {
-		f2fs_put_dnode(&dn);
-		set_sbi_flag(F2FS_P_SB(page), SBI_NEED_FSCK);
-		f2fs_msg(F2FS_P_SB(page)->sb, KERN_WARNING,
-			"%s: corrupted inline inode ino=%lx, i_addr[0]:0x%x, "
-			"run fsck to fix.",
-			__func__, dir->i_ino, dn.data_blkaddr);
-		err = -EINVAL;
-		goto out;
-	}
 
 	f2fs_wait_on_page_writeback(page, DATA, true);
 	zero_user_segment(page, MAX_INLINE_DATA(dir), PAGE_SIZE);
