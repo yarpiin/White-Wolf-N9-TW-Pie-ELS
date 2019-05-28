@@ -1,6 +1,19 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+28/05/2019
+
+  * version 12
+  * f2fs: link f2fs quota ops for sysfile (Jaegeuk Kim) [2a5b6f8f0f26]
+  * ext4: fix build warning (Jaegeuk Kim) [cb2356b61c1d]
+  * Revert "Revert "crypto: arm/aes-neonbs - don't access already-freed walk.iv"" (Eric Biggers) [4c3fe0614fe1]
+  * Revert "Revert "crypto: salsa20 - don't access already-freed walk.iv"" (Eric Biggers) [ca4bda5fb1e9]
+  * Revert "Revert "crypto: gcm - Fix error return code in crypto_gcm_create_common()"" (Wei Yongjun) [dbb78769df07]
+  * Revert "Revert "crypto: x86/crct10dif-pcl - fix use via crypto_shash_digest()"" (Eric Biggers) [5c55b01609e7]
+  * Revert "Revert "crypto: crct10dif-generic - fix use via crypto_shash_digest()"" (Eric Biggers) [c123a3ea20c5]
+  * Revert "Revert "crypto: vmx - fix copy-paste error in CTR mode"" (Daniel Axtens) [024122c9b6bb]
+  * Revert "Revert "crypto: chacha20poly1305 - set cra_name correctly"" (Eric Biggers) [d7982faec763]
+
 26/05/2019
 
   * version 11
