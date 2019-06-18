@@ -1,6 +1,12 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+18/06/2019
+
+  * version 15
+  * yarpiin_defconfig: update (Slawek) [c82fadfa7162]
+  * Merge branch 'tw90-stock-p' into tw90-android-p (import CSF9 OSRC) (FAROVITUS) [a273da602daa]
+
 17/06/2019
 
   * version 14
