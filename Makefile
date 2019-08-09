@@ -304,8 +304,8 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 	  else if [ -x /bin/bash ]; then echo /bin/bash; \
 	  else echo sh; fi ; fi)
 
-HOSTCC       = gcc
-HOSTCXX      = g++
+HOSTCC       = $(CCACHE) gcc
+HOSTCXX      = $(CCACHE) g++
 HOSTCFLAGS   := -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89
 HOSTCXXFLAGS = -O2
 
@@ -347,7 +347,7 @@ include scripts/Kbuild.include
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 LDGOLD		= $(CROSS_COMPILE)ld.gold
-CC		= $(CROSS_COMPILE)gcc
+CC		= ccache $(CROSS_COMPILE)gcc
 CPP		= $(CC) -E
 AR		= $(CROSS_COMPILE)ar
 NM		= $(CROSS_COMPILE)nm
@@ -397,7 +397,15 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
 		   -Werror \
-		   -std=gnu89
+		   -std=gnu89 \
+		   -Wno-maybe-uninitialized -Wno-unused-variable -Wno-unused-function -Wno-unused-label \
+		   -Wno-memset-transposed-args -Wno-bool-compare -Wno-logical-not-parentheses -Wno-discarded-array-qualifiers \
+		   -Wno-unused-const-variable -Wno-array-bounds -Wno-incompatible-pointer-types -Wno-implicit-function-declaration \
+		   -Wno-misleading-indentation -Wno-tautological-compare -Wno-pointer-compare -Wno-switch-bool -Wno-sizeof-pointer-div \
+		   -Wno-format-truncation -Wno-duplicate-decl-specifier -Wno-memset-elt-size -Wno-bool-operation -Wno-sizeof-pointer-memaccess \
+		   -Wno-int-in-bool-context -Wno-parentheses -Wno-switch-unreachable -Wno-stringop-overflow -Wno-format-overflow -Wno-restrict \
+           -Wno-nonnull -Wno-shift-overflow -fno-asynchronous-unwind-tables -ffast-math \
+
 KBUILD_CPPFLAGS := -D__KERNEL__
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
@@ -751,7 +759,7 @@ else
 ifdef CONFIG_PROFILE_ALL_BRANCHES
 KBUILD_CFLAGS	+= -O2 $(call cc-disable-warning,maybe-uninitialized,)
 else
-KBUILD_CFLAGS   += -O2
+KBUILD_CFLAGS   += -Ofast -ffast-math -funsafe-math-optimizations -march=armv8-a+crypto+fp16+crc
 endif
 endif
 
@@ -822,6 +830,10 @@ else
 # These warnings generated too much noise in a regular build.
 # Use make W=1 to enable them (see scripts/Makefile.extrawarn)
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-but-set-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
+KBUILD_CFLAGS += $(call cc-disable-warning, attribute-alias)
+KBUILD_CFLAGS += $(call cc-disable-warning, packed-not-aligned)
+KBUILD_CFLAGS += $(call cc-disable-warning, stringop-truncation)
 endif
 
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
