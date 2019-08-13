@@ -1,6 +1,46 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+12/08/2019
+
+  * version 20
+  * usb: Modify mass_storage gadget to work with configfs (jimzrt) [48b5507a71c2]
+  * ANDROID: fix binder change in merge of 4.9.188 (Todd Kjos) [561e70424e88]
+  * Linux 4.9.189 (Greg Kroah-Hartman) [4bd718dba658]
+  * x86/speculation/swapgs: Exclude ATOMs from speculation through SWAPGS (Thomas Gleixner) [2224e89446b6]
+  * x86/entry/64: Use JMP instead of JMPQ (Josh Poimboeuf) [6583ecced632]
+  * x86/speculation: Enable Spectre v1 swapgs mitigations (Josh Poimboeuf) [90d45f0856f3]
+  * x86/speculation: Prepare entry code for Spectre v1 swapgs mitigations (Josh Poimboeuf) [e90ec5e2b679]
+  * x86: cpufeatures: Sort feature word 7 (Ben Hutchings) [7092a21c757c]
+  * spi: bcm2835: Fix 3-wire mode if DMA is enabled (Lukas Wunner) [a89b44e461a5]
+  * block: blk_init_allocated_queue() set q->fq as NULL in the fail case (xiao jin) [c19199167c87]
+  * bnx2x: Disable multi-cos feature. (Sudarsana Reddy Kalluru) [7c4653274b7d]
+  * ife: error out when nla attributes are empty (Cong Wang) [264e020e262f]
+  * ip6_tunnel: fix possible use-after-free on xmit (Haishuang Yan) [dfb98836f9a3]
+  * compat_ioctl: pppoe: fix PPPOEIOCSFWD handling (Arnd Bergmann) [00a8794f636b]
+  * tipc: compat: allow tipc commands without arguments (Taras Kondratiuk) [695074c7f4d4]
+  * net: sched: Fix a possible null-pointer dereference in dequeue_func() (Jia-Ju Bai) [4c6f0d6ba073]
+  * net/mlx5: Use reversed order when unregister devices (Mark Zhang) [03eb042dec2d]
+  * net: fix ifindex collision during namespace removal (Jiri Pirko) [78922ae6f666]
+  * net: bridge: mcast: don't delete permanent entries when fast leave is enabled (Nikolay Aleksandrov) [6d9235bd12cd]
+  * net: bridge: delete local fdb on device init failure (Nikolay Aleksandrov) [0e08ee5760f8]
+  * atm: iphase: Fix Spectre v1 vulnerability (Gustavo A. R. Silva) [b5641e517bd2]
+  * libceph: use kbasename() and kill ceph_file_part() (Ilya Dryomov) [22395a3e46d6]
+  * objtool: Add rewind_stack_do_exit() to the noreturn list (Josh Poimboeuf) [180019b00c3c]
+  * objtool: Add machine_real_restart() to the noreturn list (Josh Poimboeuf) [495dace544bc]
+  * IB: directly cast the sockaddr union to aockaddr (Greg Kroah-Hartman) [d41d78cc1245]
+  * RDMA: Directly cast the sockaddr union to sockaddr (Jason Gunthorpe) [7d5750c0edfe]
+  * HID: Add quirk for HP X1200 PIXART OEM mouse (Sebastian Parschauer) [41052c98e41f]
+  * HID: wacom: fix bit shift for Cintiq Companion 2 (Aaron Armstrong Skomra) [0cb65f3a0d18]
+  * tcp: be more careful in tcp_fragment() (Eric Dumazet) [06fac08201a7]
+  * arm64: cpufeature: Fix feature comparison for CTR_EL0.{CWG,ERG} (Will Deacon) [3c5dbb95a8fe]
+  * arm64: cpufeature: Fix CTR_EL0 field definitions (Will Deacon) [e364e9a22b45]
+  * ARM: dts: logicpd-som-lv: Fix Audio Mute (Adam Ford) [5f085ef8cf66]
+  * ARM: dts: Add pinmuxing for i2c2 and i2c3 for LogicPD torpedo (Adam Ford) [7fc1e8a05800]
+  * ARM: dts: Add pinmuxing for i2c2 and i2c3 for LogicPD SOM-LV (Adam Ford) [5770e6960c1e]
+  * scsi: fcoe: Embed fc_rport_priv in fcoe_rport structure (Hannes Reinecke) [792f95e79a75]
+  * yarpiin_defconfig: update (yarpiin) [25f8f5b6d60f]
+
 
 10/08/2019
 
