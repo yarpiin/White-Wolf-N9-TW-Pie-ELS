@@ -1,6 +1,37 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+12/09/2019
+
+  * version 23
+  * Linux 4.9.192 (Greg Kroah-Hartman) [5ce2e060020b]
+  * mld: fix memory leak in mld_del_delrec() (Eric Dumazet) [362da40c50a1]
+  * tcp: inherit timestamp on mtu probe (Willem de Bruijn) [217fc8298541]
+  * net: stmmac: dwmac-rk: Don't fail if phy regulator is absent (Chen-Yu Tsai) [9e208ccf32ea]
+  * net: fix skb use after free in netpoll (Feng Sun) [a794b0ea63b9]
+  * Revert "x86/apic: Include the LDR when clearing out APIC registers" (Linus Torvalds) [5ad424f5d529]
+  * spi: bcm2835aux: fix corruptions for longer spi transfers (Martin Sperl) [8df65c47f486]
+  * spi: bcm2835aux: remove dangerous uncontrolled read of fifo (Martin Sperl) [da21b79a9836]
+  * spi: bcm2835aux: unifying code between polling and interrupt driven code (Martin Sperl) [ddf552e7786f]
+  * spi: bcm2835aux: ensure interrupts are enabled for shared handler (Rob Herring) [fd5811e894bb]
+  * libceph: allow ceph_buffer_put() to receive a NULL ceph_buffer (Luis Henriques) [05700fe42186]
+  * KVM: arm/arm64: Only skip MMIO insn once (Andrew Jones) [b62d9297953f]
+  * ceph: fix buffer free while holding i_ceph_lock in fill_inode() (Luis Henriques) [941c7ede13f7]
+  * ceph: fix buffer free while holding i_ceph_lock in __ceph_setxattr() (Luis Henriques) [9cec64d3f6d9]
+  * IB/mlx4: Fix memory leaks (Wenwen Wang) [3f452f401865]
+  * Tools: hv: kvp: eliminate 'may be used uninitialized' warning (Vitaly Kuznetsov) [6be6f81601e6]
+  * ravb: Fix use-after-free ravb_tstamp_skb (Tho Vu) [b31da50f90dd]
+  * wimax/i2400m: fix a memory leak bug (Wenwen Wang) [102a39cb10f7]
+  * net: kalmia: fix memory leaks (Wenwen Wang) [41cc386c90cb]
+  * cx82310_eth: fix a memory leak bug (Wenwen Wang) [08f7aa4e3082]
+  * net: myri10ge: fix memory leaks (Wenwen Wang) [b57c8626385d]
+  * cxgb4: fix a memory leak bug (Wenwen Wang) [0b9e6253db9f]
+  * gpio: Fix build error of function redefinition (YueHaibing) [f45f30e84559]
+  * ibmveth: Convert multicast list size for little-endian system (Thomas Falcon) [37fd1f6629c2]
+  * Bluetooth: btqca: Add a short delay before downloading the NVM (Matthias Kaehlcke) [59d763634c25]
+  * net: tc35815: Explicitly check NET_IP_ALIGN is not zero in tc35815_rx (Nathan Chancellor) [1ed1d4d7df0a]
+  * net: tundra: tsi108: use spin_lock_irqsave instead of spin_lock_irq in IRQ context (Fuqian Huang) [2046ecf3e170]
+
 07/09/2019
 
   * version 22.1
