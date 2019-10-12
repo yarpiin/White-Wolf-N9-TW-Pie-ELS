@@ -1,6 +1,60 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+12/10/2019
+
+  * version 26
+  * ANDROID: cuttlefish_defconfig: Enable BPF_JIT and BPF_JIT_ALWAYS_ON (Maciej Żenczykowski) [4dd66cee56e7]
+  * Linux 4.9.196 (Greg Kroah-Hartman) [140fcbee3e9d]
+  * NFC: fix attrs checks in netlink interface (Andrey Konovalov) [f4118793d37f]
+  * smack: use GFP_NOFS while holding inode_smack::smk_lock (Eric Biggers) [1e4c7ce0a9b0]
+  * Smack: Don't ignore other bprm->unsafe flags if LSM_UNSAFE_PTRACE is set (Jann Horn) [128373ccd3a8]
+  * ipv6: Handle missing host route in __ipv6_ifa_notify (David Ahern) [4d3ab6e95c31]
+  * sch_cbq: validate TCA_CBQ_WRROPT to avoid crash (Eric Dumazet) [2e9b0c5d7ab8]
+  * xen-netfront: do not use ~0U as error return value for xennet_fill_frags() (Dongli Zhang) [d51c3f70633b]
+  * net/rds: Fix error handling in rds_ib_add_one() (Dotan Barak) [ba97088faa61]
+  * sch_dsmark: fix potential NULL deref in dsmark_init() (Eric Dumazet) [fdf26ff75177]
+  * qmi_wwan: add support for Cinterion CLS8 devices (Reinhard Speyerer) [bc655b967589]
+  * nfc: fix memory leak in llcp_sock_bind() (Eric Dumazet) [529a9b873115]
+  * net: Unpublish sk from sk_reuseport_cb before call_rcu (Martin KaFai Lau) [62241d6d9e49]
+  * net: qlogic: Fix memory leak in ql_alloc_large_buffers (Navid Emamdoost) [3ae6d4c94733]
+  * net: ipv4: avoid mixed n_redirects and rate_tokens usage (Paolo Abeni) [a14aed920b23]
+  * ipv6: drop incoming packets having a v4mapped source address (Eric Dumazet) [c784a010ca2d]
+  * hso: fix NULL-deref on tty open (Johan Hovold) [98aa8337791e]
+  * cxgb4:Fix out-of-bounds MSI-X info array access (Vishal Kulkarni) [2517d6a96347]
+  * ANDROID: binder: synchronize_rcu() when using POLLFREE. (Martijn Coenen) [b6c6212514fe]
+  * ANDROID: binder: remove waitqueue when thread exits. (Martijn Coenen) [a494a71146a1]
+  * kmemleak: increase DEBUG_KMEMLEAK_EARLY_LOG_SIZE default to 16K (Nicolas Boichat) [198d33ad87d9]
+  * ocfs2: wait for recovering done after direct unlock request (Changwei Ge) [96a23aabd045]
+  * hypfs: Fix error number left in struct pointer member (David Howells) [0329daffbca7]
+  * fat: work around race with userspace's read via blockdev while mounting (OGAWA Hirofumi) [3730ea003ab1]
+  * ARM: 8903/1: ensure that usable memory in bank 0 starts from a PMD-aligned address (Mike Rapoport) [6b81ce522e6a]
+  * security: smack: Fix possible null-pointer dereferences in smack_socket_sock_rcv_skb() (Jia-Ju Bai) [5f0b9f0611ee]
+  * HID: apple: Fix stuck function keys when using FN (Joao Moreno) [e703be394ef2]
+  * ARM: 8898/1: mm: Don't treat faults reported from cache maintenance as writes (Will Deacon) [4ae0fc9a8412]
+  * PCI: tegra: Fix OF node reference leak (Nishka Dasgupta) [c0c2a1ad6825]
+  * mfd: intel-lpss: Remove D3cold delay (Kai-Heng Feng) [8573fcdff5bf]
+  * MIPS: tlbex: Explicitly cast _PAGE_NO_EXEC to a boolean (Nathan Chancellor) [cbc4467d07f5]
+  * scsi: core: Reduce memory required for SCSI logging (Bart Van Assche) [9cb93be149c5]
+  * clk: at91: select parent if main oscillator or bypass is enabled (Eugen Hristev) [9bf57138e5a4]
+  * arm64: fix unreachable code issue with cmpxchg (Arnd Bergmann) [3e8f0e8a469c]
+  * powerpc/pseries: correctly track irq state in default idle (Nathan Lynch) [70321fe1f425]
+  * powerpc/64s/exception: machine check use correct cfar for late handler (Nicholas Piggin) [70fe3b1e857b]
+  * drm/amdgpu/si: fix ASIC tests (Jean Delvare) [bd8ed512905b]
+  * vfio_pci: Restore original state on release (hexin) [89a4dab0f914]
+  * pinctrl: tegra: Fix write barrier placement in pmx_writel (Sowjanya Komatineni) [c0582001e3a7]
+  * powerpc/pseries/mobility: use cond_resched when updating device tree (Nathan Lynch) [57a501a23848]
+  * powerpc/futex: Fix warning: 'oldval' may be used uninitialized in this function (Christophe Leroy) [85842790f4ce]
+  * powerpc/rtas: use device model APIs and serialization during LPM (Nathan Lynch) [d050b7aba3fb]
+  * clk: sirf: Don't reference clk_init_data after registration (Stephen Boyd) [728093eee582]
+  * clk: qoriq: Fix -Wunused-const-variable (Nathan Huckleberry) [fd9b2f4af13d]
+  * ipmi_si: Only schedule continuously in the thread in maintenance mode (Corey Minyard) [7522f96fa4cb]
+  * gpu: drm: radeon: Fix a possible null-pointer dereference in radeon_connector_set_property() (Jia-Ju Bai) [59a8932a1fb6]
+  * drm/radeon: Fix EEH during kexec (KyleMahlkuch) [96aed711d302]
+  * video: ssd1307fb: Start page range at page_offset (Marko Kohtala) [e68cb861bf61]
+  * drm/bridge: tc358767: Increase AUX transfer length limit (Andrey Smirnov) [0372fc304a6b]
+
+
 07/10/2019
 
   * version 25
