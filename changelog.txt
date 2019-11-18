@@ -1,6 +1,10 @@
 
 Project name: White-Wolf-N9-TW-Pie-ELS
 
+18/11/2019
+
+  * version 30
+  * Revert "usb: gadget: configfs: fix concurrent issue between composite APIs" (FAROVITUS) [5239a454c664]
 
 16/11/2019
 
