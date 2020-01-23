@@ -28,7 +28,7 @@ YARPIIN_PERM_VER="$BASE_YARPIIN_VER$VER$PERM"
 
 # Vars
 export LOCALVERSION=-`echo $YARPIIN_VER`
-export CROSS_COMPILE="$TOOLCHAIN_DIR/aarch64-linux-gnu/bin/aarch64-linux-gnu-"
+export CROSS_COMPILE="$TOOLCHAIN_DIR/aarch64-linux-gnu/bin/aarch64-none-linux-gnu-"
 export ARCH=arm64
 export SUBARCH=arm64
 export KBUILD_BUILD_USER=yarpiin
