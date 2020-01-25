@@ -281,7 +281,8 @@ static inline u32 netpm_rttvar_avg(struct tcp_sock *tp)
 }
 #endif
 
-static void tcp_gro_dev_warn(struct sock *sk, const struct sk_buff *skb)
+static void tcp_gro_dev_warn(struct sock *sk, const struct sk_buff *skb,
+			     unsigned int len)
 {
 	static bool __once __read_mostly;
 
@@ -292,8 +293,9 @@ static void tcp_gro_dev_warn(struct sock *sk, const struct sk_buff *skb)
 
 		rcu_read_lock();
 		dev = dev_get_by_index_rcu(sock_net(sk), skb->skb_iif);
-		pr_warn("%s: Driver has suspect GRO implementation, TCP performance may be compromised.\n",
-			dev ? dev->name : "Unknown driver");
+		if (!dev || len >= dev->mtu)
+			pr_warn("%s: Driver has suspect GRO implementation, TCP performance may be compromised.\n",
+				dev ? dev->name : "Unknown driver");
 		rcu_read_unlock();
 	}
 }
@@ -316,8 +318,10 @@ static void tcp_measure_rcv_mss(struct sock *sk, const struct sk_buff *skb)
 	if (len >= icsk->icsk_ack.rcv_mss) {
 		icsk->icsk_ack.rcv_mss = min_t(unsigned int, len,
 					       tcp_sk(sk)->advmss);
-		if (unlikely(icsk->icsk_ack.rcv_mss != len))
-			tcp_gro_dev_warn(sk, skb);
+		/* Account for possibly-removed options */
+		if (unlikely(len > icsk->icsk_ack.rcv_mss +
+				   MAX_TCP_OPTION_SPACE))
+			tcp_gro_dev_warn(sk, skb, len);
 	} else {
 		/* Otherwise, we make more careful check taking into account,
 		 * that SACKs block is variable.
@@ -1327,9 +1331,10 @@ static void tcp_update_reordering(struct sock *sk, const int metric,
 /* This must be called before lost_out is incremented */
 static void tcp_verify_retransmit_hint(struct tcp_sock *tp, struct sk_buff *skb)
 {
-	if (!tp->retransmit_skb_hint ||
-	    before(TCP_SKB_CB(skb)->seq,
-		   TCP_SKB_CB(tp->retransmit_skb_hint)->seq))
+	if ((!tp->retransmit_skb_hint && tp->retrans_out >= tp->lost_out) ||
+	    (tp->retransmit_skb_hint &&
+	     before(TCP_SKB_CB(skb)->seq,
+		    TCP_SKB_CB(tp->retransmit_skb_hint)->seq)))
 		tp->retransmit_skb_hint = skb;
 
 	if (!tp->lost_out ||
@@ -2157,8 +2162,11 @@ tcp_sacktag_write_queue(struct sock *sk, const struct sk_buff *ack_skb,
 		}
 
 		/* Ignore very old stuff early */
-		if (!after(sp[used_sacks].end_seq, prior_snd_una))
+		if (!after(sp[used_sacks].end_seq, prior_snd_una)) {
+			if (i == 0)
+				first_sack_index = -1;
 			continue;
+		}
 
 		used_sacks++;
 	}
